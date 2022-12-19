@@ -1,37 +1,42 @@
 <!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>NGINX on Railway</title>
-    <meta name="description" content="Choo Choo!" />
-
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link rel="stylesheet" href="/styles.css?v=1.0" />
-  </head>
-
-  <body>
-    <main>
-      <img
-        src="https://railway.app/brand/logo-light.svg"
-        alt="Railway logo"
-        class="logo"
-      />
-
-      <h1>NGINX on Railway</h1>
-
-      <p>
-        Choo Choo! This is an example of an NGINX static site running on
-        Railway.
-        <a
-          href="https://github.com/railwayapp/starters/tree/master/examples/nginx"
-          >View source</a
-        >.
-      </p>
-    </main>
-
-    <script src="/script.js"></script>
-  </body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bbauti / todo app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css ">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+    <div class="main">
+        <h1 class="titulo">Todo</h1>
+        <p class="sub">Version plataforma 5</p>
+        <div class="buttons">
+            <button class="deleteAll" onClick="deleteChecked()">Borrar tareas completadas</button>
+            <button class="sortAll" onClick="sort()">Acomodar por estado</button>    
+        </div>
+        <div class="progress">
+            <progress style="width: 100%;" max="5" value="1" id="progress"></progress>
+            <p id="progressText">1 de x completadas</p>
+        </div>
+        <ul class="todos" id="todos">
+        </ul>
+        <form id="addform" class="add">
+            <label for="addTodoForm">Añadir</label>
+            <div class="addtodo">
+                <input id="addTodoForm" name="addTodoForm" class="formAdd">
+                <button id="sendtodo" type="submit" class="todosend">Enviar</button>
+            </div>
+        </form>
+        <div class="footer">
+            <p style="">todo app / bbauti</p>
+            <a href="https://github.com/bbauti/p5todoapp" target="_blank" rel="noopener noreferrer" style="margin-left: auto;">source code</a>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
 </html>
