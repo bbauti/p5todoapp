@@ -7,7 +7,7 @@
 
 @font-face {
   font-family: 'roboto'; /*a name to be used later*/
-  src: url('/roboto.ttf'); /*URL to font*/
+  src: url('../../assets/roboto.ttf'); /*URL to font*/
 }
 
 body {
@@ -24,12 +24,6 @@ body {
   color: var(--text-color);
   user-select: none;
   box-sizing:border-box;
-}
-
-@media only screen and (max-width: 769px) {
-  .main {
-    width: 90vw;
-  }
 }
 
 .titulo {
@@ -55,14 +49,9 @@ body {
   width: fit-content;
 }
 
-.gradient {
-  display: inline-block;
-  cursor: default;
-  transition: all 0.3s ease;
-}
-.gradient:hover {
-  transform: translateY(-10px);
-  color: #FFCA28;
+.buttons {
+  display: flex;
+  gap: 5vw;
 }
 
 .deleteAll  {
@@ -216,4 +205,21 @@ input:disabled {
 a {
   text-decoration: none;
   color: #42D392;
+}
+
+@media only screen and (max-width: 769px) {
+  .main {
+    width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  input[type="checkbox"] {
+    height: 35px;
+    width: 35px;
+  }
+
+  .textInput {
+    font-size: 1.3rem;
+  }
 }

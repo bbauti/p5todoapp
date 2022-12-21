@@ -1,3 +1,5 @@
+// variables
+
 const todoForm = document.querySelector("#addform");
 const todoInput = document.querySelector("#addTodoForm");
 const todoButton = document.querySelector("#sendtodo");
@@ -5,6 +7,8 @@ const todos = document.querySelector("#todos")
 const progress = document.querySelector("#progress")
 const progressText = document.querySelector("#progressText")
 const editButton = document.querySelector("#progressText")
+
+// local storage
 
 const todosJson = localStorage.getItem('todos');
 let lastid = localStorage.getItem('lastid') 
@@ -15,8 +19,12 @@ if(todosJson){
     todolist = JSON.parse(todosJson);
 }
 
+// progress
+
 let checked
 let total
+
+// checks for changes, updates progress and localstorage
 
 function check() {
     todolist.forEach(function(i){
@@ -34,6 +42,8 @@ function check() {
     localStorage.setItem('todos', JSON.stringify(todolist));
 }
 
+// sorts items by checked status
+
 function sort() {
     const order = [true, false];
     todolist.sort((x, y) => order.indexOf(x.checked) - order.indexOf(y.checked));
@@ -41,6 +51,8 @@ function sort() {
     check()
     printTodo()
 }
+
+// function to edit items. Changes icons, enables inputs 
 
 function edit(id) {
     let todo = todolist.find(i => i.id === id);
@@ -71,6 +83,8 @@ function updateProgress() {
 
 let cont = todolist.length || 0
 
+// runs init function on startup, prints items and creates ids 
+
 window.onload = init()
 
 function init() {
@@ -80,8 +94,10 @@ function init() {
     localStorage.setItem('lastid', id++);
 }
 
+// creates item
+
 function createTodo(text, id, edit, status){
-    //crear li
+    //create li
 
     let li = document.createElement("li");
     li.classList.add('todo');
@@ -92,6 +108,7 @@ function createTodo(text, id, edit, status){
     checkbox.type = "checkbox";
     checkbox.id = id
     checkbox.name = id
+    // check if checkbox is checked from localstorage
     if (status) {
         checkbox.checked = true
     }
@@ -103,6 +120,7 @@ function createTodo(text, id, edit, status){
     let textInput = document.createElement("input");
     textInput.type = "text"
     textInput.classList.add('textInput')
+    // check if input is being edited from localstorage
     if (edit == true) {
         textInput.disabled = false
     } else {
@@ -129,7 +147,7 @@ function createTodo(text, id, edit, status){
         icon.classList.add('fa-pen-to-square')
     }
 
-    // agregar cosas
+    // append elements
 
     li.appendChild(checkbox);
     li.appendChild(textInput);
@@ -140,11 +158,15 @@ function createTodo(text, id, edit, status){
 
 todoForm.addEventListener("submit", addToList);
 
+// deletes all childs from parent
+
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
 }
+
+// adds new item to localstorage and item list
 
 function addItem(text) {
     id=lastid++
@@ -157,6 +179,8 @@ function addItem(text) {
     }
     todolist.push(todo)
 } 
+
+// deleted all checked items from html and localstorage
 
 function deleteChecked() {
     let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked')
@@ -171,9 +195,9 @@ function deleteChecked() {
 }
 
 function addToList(e) {
-    // comprobar si el usuario ingresa algo
+    // check if input has value
     if (todoInput.value === "") {
-        // si no ingreso nada, le agrego clase temporalmente y se la saco.
+        // if not, trows error
         todoInput.classList.toggle("formerror");
         todoButton.classList.toggle("buttonerror");
         setTimeout(() => {
@@ -181,7 +205,7 @@ function addToList(e) {
             todoButton.classList.toggle("buttonerror");
         }, 500);
     } else {
-
+        // creates item and append to html and localstorage
         addItem(todoInput.value)
         printTodo()
 
@@ -191,8 +215,12 @@ function addToList(e) {
 
     }
 
+    //stops form submit from reloading page
+
     e.preventDefault();
 }
+
+// deletes all previous items and appends all new ones to html
 
 function printTodo() {
     removeAllChildNodes(todos)
