@@ -5,7 +5,6 @@ Creada para el proyecto TodoApp del curso de Plataforma 5.
 
 ## ✨ Caracteristicas
 
-- NGINX
 - Sitio estatico
 - Sorting
 - Borrado de multiples tareas
